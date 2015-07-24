@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]; then
+   echo "Usage: $0 file prefix"
+   exit 1
+fi
+
+mv "$1" "$2""$1"

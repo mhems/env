@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+    echo "USAGE: $0 file1 file2"
+    exit 1
+fi
+
+TMP=$(mktemp) || { echo 'Could not make temporary file' ; exit 1; }
+
+mv "$1"   "$TMP"
+mv "$2"   "$1"
+mv "$TMP" "$2"
+
+rm -f "$TMP"
