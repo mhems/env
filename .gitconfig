@@ -1,0 +1,27 @@
+[user]
+	name = "Matt Hems"
+	email = mhems1@binghamton.edu
+
+[core]
+	editor = emacs
+	whitespace = blank-at-eol, space-before-tab
+	excludesfile = ~/.gitignore
+
+[color]
+	ui = auto
+
+[github]
+	user = mhems
+
+[alias]
+	co = checkout
+	ci = commit
+	cam = commit -am
+	cm = commit -m
+	br = branch
+	st = status
+	up = push origin master
+	last = log -1 HEAD
+
+[help]
+	autocorrect = 50
