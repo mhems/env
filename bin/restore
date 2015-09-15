@@ -1,3 +1,8 @@
 #!/bin/bash
 
-mv "$1"'~' "$1"
+if [ $# -ne 1 ]; then
+   echo "Usage: prefix FILE"
+   exit 1
+fi
+
+mv "${1}~" "$1"
