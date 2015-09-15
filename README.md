@@ -1,2 +1,0 @@
-# env
-My Linux Environment
