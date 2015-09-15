@@ -8,7 +8,13 @@ declare -a programs=(
     vim
     nano
 
+    meld
+    colordiff
+    wdiff
+
     clang
+    ddd
+    valgrind
     swi-prolog
     ghc
     ruby
