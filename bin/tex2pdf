@@ -1,6 +1,0 @@
-#!/bin/bash
-
-tex hw2.tex
-dvipdf hw2.dvi
-rm -rf hw2.dvi
-evince hw2.pdf
