@@ -38,7 +38,7 @@ alias h='history | tail -n 20'
 alias path='echo $PATH | sed '"'"'s/:/\n/g'"'"
 alias rec='ll | head -n 20'
 alias update='cp -uv'
-
+alias please='sudo bash -c "$(history -p !!)"'
 alias dirdiff='diff -rq'
 alias idiff='diff -Bibw --ignore-all-space --ignore-blank-lines'
 
