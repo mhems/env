@@ -21,7 +21,8 @@
 	br = branch
 	st = status
 	up = push origin master
-	last = log -1 HEAD
+  dl = pull origin master
+  last = log -1 HEAD
 
 [help]
 	autocorrect = 50
