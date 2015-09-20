@@ -21,5 +21,5 @@ function gen_ps1()
     if [ $exitcode -ne 0 ]; then
 	COLOR=$BOLD_RED
     fi
-    PS1="[\!] ${GREEN}\u#\h${END_COLOR} ${BOLD_BLUE}\w${END_COLOR} ${GREEN}[\A]${END_COLOR} ${COLOR}\$${END_COLOR} "
+    PS1="[\!] ${GREEN}\u#\h${END_COLOR} ${BOLD_BLUE}\w${END_COLOR} ${GREEN}[\A]${END_COLOR}\n${COLOR}\$${END_COLOR} "
 }

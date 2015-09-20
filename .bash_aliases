@@ -2,7 +2,7 @@
 
 # TYPOS
 alias clera='clear'
-alias em='emacs'
+alias em='/usr/bin/emacs -nw'
 alias emasc='emacs'
 alias emcas='emacs'
 alias enacs='emacs'
