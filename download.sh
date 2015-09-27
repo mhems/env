@@ -40,7 +40,7 @@ declare -a programs=(
 
 # Determine which package manager to use
 found=1
-for i in ${#commands[@]}
+for i in `seq 0 ${#commands[@]}`
 do
     which ${commands[$i]} &> /dev/null
     if [[ $? -eq 0 ]]
