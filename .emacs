@@ -66,28 +66,12 @@
 (setq-default tab-width 2)
 (setq indent-line-function 'insert-tab)
 
-(add-hook 'c-mode-hook 
+(add-hook 'c-mode-hook
 	  '(lambda ()
 	     (setq c-tab-always-indent nil)
 	     (setq c-label-offset 0)
 	     (setq c-continued-brace-offset 2)
 	     (setq c-continued-statement-offset 2)))
-
-
-;; thanks to http://www.emacswiki.org/emacs/MakingScriptsExecutableOnSave
-;; chmod u+x on files that start with shebang
-(add-hook 'after-save-hook
-        #'(lambda ()
-        (and (save-excursion
-               (save-restriction
-                 (widen)
-                 (goto-char (point-min))
-                 (save-match-data
-                   (looking-at "^#!"))))
-             (not (file-executable-p buffer-file-name))
-             (shell-command (concat "chmod u+x " buffer-file-name))
-             (message
-              (concat "Saved as script: " buffer-file-name)))))
 
 
 ;; converts HELLO WORLD to H E L L O  W O R L D
