@@ -6,12 +6,15 @@ set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set skip-completed-text on
 
-
 TAB: menu-complete
+
+Control-j : menu-complete
+Control-k : menu-complete-backward
+Control-p : history-search-backward
 
 $if mode=emacs
 
-Meta-Control-h:backward-kill-wordText after the function name is ignored
+Meta-Control-h:backward-kill-word
 
 #
 # Arrow keys in keypad mode
@@ -64,10 +67,3 @@ $if Bash
 # Edit variable on current line.
 "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
 $endif
-
-"\C-p": history-search-backward
-"\e[A": history-search-backward
-"\e[B": history-search-forward
-"\C-d": kill-whole-line
-"\C-u": 'cd ..\015ls\015'
-"\C-w": unix-filename-rubout
