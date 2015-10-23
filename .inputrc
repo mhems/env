@@ -6,8 +6,6 @@ set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set skip-completed-text on
 
-TAB: menu-complete
-
 Control-j : menu-complete
 Control-k : menu-complete-backward
 Control-p : history-search-backward
