@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -e "$1" ]
+then
+    fname="$1"
+else
+    fname='.'
+fi
+'ls' -lR "$fname" | awk 'BEGIN{sum=0}{sum+=$5}END{print sum}'
