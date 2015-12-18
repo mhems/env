@@ -36,6 +36,17 @@ declare -a programs=(
     pccts
     flex
     bison
+
+    ranger
+    ffmpegthumbnailer
+    img2txt
+    caca-utils
+    highlight
+    atool
+    mediainfo
+    exiftool
+
+    vlc-nox
 )
 
 # Determine which package manager to use
@@ -45,9 +56,9 @@ do
     which ${commands[$i]} &> /dev/null
     if [[ $? -eq 0 ]]
     then
-	found=0
-	index=$i
-	break
+	      found=0
+	      index=$i
+	      break
     fi
 done
 

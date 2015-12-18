@@ -1,0 +1,54 @@
+http://nschum.de/src/emacs/guess-style/         guess-style.el
+http://www.emacswiki.org/emacs/ColumnizeWords   columnize.el
+http://www.emacswiki.org/emacs/GuessOffset      guess-offset.el
+http://www.emacswiki.org/emacs/CodeBeautifying  comments.el
+http://www.emacswiki.org/emacs/ShowWhiteSpace   redspace.el
+                                                highlight-chars.el
+http://www.emacswiki.org/emacs/RainbowDelimiters  rainbow-delimiters.el
+https://github.com/capitaomorte/autopair        autopair.el
+                                                joseph-autopair.el
+                                                parenthesis.el
+http://www.emacswiki.org/emacs/HideOrIgnoreComments hide-comnt.el
+http://www.emacswiki.org/emacs/HideIfDef        hideif.el
+http://www.emacswiki.org/emacs/JavadocHelp      javadoc-help.el
+  
+
+    
+http://www.emacswiki.org/emacs/BackspaceWhitespaceToTabStop
+http://www.emacswiki.org/emacs/SmartTabs
+http://www.emacswiki.org/emacs/NavigatingParentheses
+https://github.com/Fuco1/smartparens
+http://www.emacswiki.org/emacs/AutoPairs
+http://www.emacswiki.org/emacs/SkeletonMode
+http://www.emacswiki.org/emacs/CategoryTemplates
+http://www.emacswiki.org/emacs/TableMode
+http://www.emacswiki.org/emacs/ProgrammingModes
+      
+ (require 'whitespace)
+   (setq whitespace-style '(face empty tabs lines-tail trailing))
+   (global-whitespace-mode t)
+
+  http://www.emacswiki.org/emacs/MoveRegion
+
+(defun move-region (start end n)
+    "Move the current region up or down by N lines."
+    (interactive "r\np")
+    (let ((line-text (delete-and-extract-region start end)))
+      (forward-line n)
+      (let ((start (point)))
+        (insert line-text)
+        (setq deactivate-mark nil)
+        (set-mark start))))
+
+  (defun move-region-up (start end n)
+    "Move the current line up by N lines."
+    (interactive "r\np")
+    (move-region start end (if (null n) -1 (- n))))
+
+  (defun move-region-down (start end n)
+    "Move the current line down by N lines."
+    (interactive "r\np")
+    (move-region start end (if (null n) 1 n)))
+
+  (global-set-key (kbd "M-<up>") 'move-region-up)
+  (global-set-key (kbd "M-<down>") 'move-region-down)
