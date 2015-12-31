@@ -408,7 +408,7 @@ Don't forget to mention your Emacs and library versions."))
   :group 'Highlight-Characters :group 'faces)
 
 ;;;###autoload
-(defface hc-trailing-whitespace '((t (:background "Gold")))
+(defface hc-trailing-whitespace '((t (:background "Red")))
   "*Face for highlighting whitespace at line ends in Font-Lock mode.
 This includes tab, space, and hard (non-breaking) space characters."
   :group 'Highlight-Characters :group 'faces)
