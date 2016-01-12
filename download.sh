@@ -5,6 +5,7 @@ declare -a commands=(apt-get   zypper   yum)
 declare -a options=( -yq       -nq      -yq)
 declare -a programs=(
     emacs
+    emacs-goodies-el
     vim
     nano
 
@@ -25,7 +26,7 @@ declare -a programs=(
     python-pip3
     python3-pip
     pylint
-    
+
     texlive-binaries
     texlive-latex-base
 
@@ -47,6 +48,12 @@ declare -a programs=(
     exiftool
 
     vlc-nox
+)
+
+declare -a pip_programs=(
+  numpy
+  grip
+  click
 )
 
 # Determine which package manager to use
@@ -71,4 +78,9 @@ fi
 for program in ${programs[@]}
 do
     sudo ${commands[$index]} ${options[$index]} install $program
+done
+
+for pip in ${pip_programs[@]}
+do
+  sudo pip install $pip
 done
