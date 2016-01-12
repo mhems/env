@@ -150,7 +150,8 @@
     (parenthesis-insert-double-quotation2 "\" " " \"")
     (parenthesis-insert-angle "<" ">")
     (parenthesis-insert-angle2 "< " " >")
-    (parenthesis-insert-grave-and-quotation "`" "'"))
+    (parenthesis-insert-grave-and-quotation "`" "`")
+    )
   "*list of functions for parenthesis."
   :type  '(repeat
            (list :tag "List of functions"

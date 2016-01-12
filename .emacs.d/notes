@@ -6,13 +6,21 @@ parenthesis.el
 hide-comnt.el
 hideif.el
 javadoc-help.el
+# doc-mode.el
+rainbow-delimiters.el
 
 *** T O D O ***
 
-comments.el
-http://www.emacswiki.org/emacs/RainbowDelimiters  rainbow-delimiters.el
+fly{make, check}
+auctex
+disable tabs by default, enable for makefile, and anyone that uses smart tabs
+paren-wrapper
+https://emacsthemes.com/ [paper ubuntu seti monokai solarized whiteboard]
+smart tabs
+install cedet
+unused/dead/bug/todo/fixme via fixme-mode ?
 
-***  N A H ***
+*** N A H ***
 
 http://nschum.de/src/emacs/guess-style/         guess-style.el # OBSELETED BY DTRT
 http://www.emacswiki.org/emacs/GuessOffset      guess-offset.el # OBSELETED BY DTRT
@@ -20,7 +28,7 @@ http://www.emacswiki.org/emacs/ColumnizeWords   columnize.el   # NOPE
 http://www.emacswiki.org/emacs/ShowWhiteSpace   redspace.el   # OBSELETED BY HC
 https://github.com/capitaomorte/autopair        autopair.el # OBSELETED BY electric-pair
                                                 joseph-autopair.el
-
+                                                comments.el # NOPE
 ****************************************
 
 http://www.emacswiki.org/emacs/BackspaceWhitespaceToTabStop
@@ -33,5 +41,4 @@ http://www.emacswiki.org/emacs/CategoryTemplates
 http://www.emacswiki.org/emacs/TableMode
 http://www.emacswiki.org/emacs/ProgrammingModes
 
-*** T I D B I T S ***
-
+*** S N I P P E T S ***
