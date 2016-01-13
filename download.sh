@@ -37,6 +37,7 @@ declare -a programs=(
     pccts
     flex
     bison
+    indent
 
     ranger
     ffmpegthumbnailer

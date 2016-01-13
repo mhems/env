@@ -1,7 +1,5 @@
 ;; my key mappings
 
-(let ((default-directory  "~/.emacs.d/elpa/"))
-    (normal-top-level-add-subdirs-to-load-path))
 (require 'cc-mode) ; various c-like modes
 
 (defalias 'qrr 'query-replace-regexp)

@@ -1,9 +1,6 @@
 ;; top-level emacs customization
 
 
-;; establish load path
-(let ((default-directory  "~/.emacs.d/elpa/"))
-    (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'load-path "~/.emacs.d/elisp/")
 
 ;; establish archives
