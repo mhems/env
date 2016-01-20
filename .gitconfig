@@ -19,6 +19,7 @@
     ci = commit
     cim = commit -m
     cam = commit -am
+    amend = commit --no-edit --amend
     br = branch
     st = status
     up = push origin master

@@ -15,6 +15,7 @@ fly{make, check}
 auctex
 disable tabs by default, enable for makefile, and anyone that uses smart tabs
 paren-wrapper
+transpose frame
 https://emacsthemes.com/ [paper ubuntu seti monokai solarized whiteboard]
 smart tabs
 install cedet
