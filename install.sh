@@ -6,8 +6,11 @@ function link()
     then
         ln -s $PWD/$1 ~/$1
         echo 'Linked' $PWD/$1 'to' ~/$1
+    elif [ -L ~/$1 ]
+    then
+        echo ~/$1 'already exists as link'
     else
-        echo "~/$1 already exists, no link was created"
+        echo ~/$1 'already exists, no link was created'
     fi
 }
 
