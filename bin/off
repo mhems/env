@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]
+then
+    echo 'Usage: off TIME'
+    exit 1
+fi
+
+xset dpms force off
+sleep "$1"
+pm-suspend
