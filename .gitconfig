@@ -24,6 +24,7 @@
     st = status
     up = push origin master
     dl = pull origin master
+    view = log origin/master HEAD master --graph --decorate --oneline
     last = log -1 HEAD
 
 
