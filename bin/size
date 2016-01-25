@@ -6,4 +6,6 @@ then
 else
     fname='.'
 fi
-'ls' -lR "$fname" | awk 'BEGIN{sum=0}{sum+=$5}END{print sum}'
+#'ls' -lR "$fname" | awk 'BEGIN{sum=0}{sum+=$5}END{print sum}'
+
+find "$fname" -not -path '*/\.*' -type f \( ! -iname ".*" \) -printf "%k\n" | awk '{sum+=$1}END{print sum, "KB"}'

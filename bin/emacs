@@ -2,7 +2,7 @@
 
 if ! [ -e "$SSH_CONNECTION" ]
 then
-    /usr/bin/env emacs $( echo "$@" | tr -d '&') &
+    /usr/bin/emacs $( echo "$@" | tr -d '&') &
 else
-    /usr/bin/env emacs "$@"
+    /usr/bin/emacs "$@"
 fi

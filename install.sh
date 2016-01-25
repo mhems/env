@@ -1,5 +1,22 @@
 #!/bin/bash
 
-mkdir -p ~/bin
-cp -r -uvbS.bak bin/ .emacs.d/ ~
-cp    -uvbS.bak .bash_aliases .bashrc .gitignore .gitconfig ~
+function link()
+{
+    if [ ! -e ~/$1 ]
+    then
+        ln -s $PWD/$1 ~/$1
+        echo 'Linked' $PWD/$1 'to' ~/$1
+    else
+        echo "~/$1 already exists, no link was created"
+    fi
+}
+
+link bin
+link .emacs.d
+link .bash_aliases
+link .bashrc
+link .gitconfig
+link .gitignore
+link .inputrc
+link .pylintrc
+link .pystartup

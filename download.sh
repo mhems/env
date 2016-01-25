@@ -64,9 +64,9 @@ do
     which ${commands[$i]} &> /dev/null
     if [[ $? -eq 0 ]]
     then
-	      found=0
-	      index=$i
-	      break
+        found=0
+        index=$i
+        break
     fi
 done
 
