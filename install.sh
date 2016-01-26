@@ -20,6 +20,5 @@ link .bash_aliases
 link .bashrc
 link .gitconfig
 link .gitignore
-link .inputrc
 link .pylintrc
 link .pystartup

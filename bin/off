@@ -7,5 +7,6 @@ then
 fi
 
 xset dpms force off
+xset s off
 sleep "$1"
 pm-suspend
