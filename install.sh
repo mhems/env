@@ -20,6 +20,7 @@ link .git_template
 
 link .bash_aliases
 link .bashrc
+link .editrc
 link .gitconfig
 link .gitignore
 link .pylintrc

@@ -9,6 +9,7 @@
     editor = emacs
     whitespace = blank-at-eol, space-before-tab
     excludesfile = ~/.gitignore
+    pager = less -F
 
 [color]
     ui = auto
@@ -25,6 +26,8 @@
     amend = commit --no-edit --amend
     br = branch
     st = status
+    d = diff
+    di = diff --ignore-all-space
     up = push origin master
     dl = pull origin master
     view = log origin/master HEAD master --graph --decorate --oneline
