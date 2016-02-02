@@ -16,6 +16,8 @@ function link()
 
 link bin
 link .emacs.d
+link .git_template
+
 link .bash_aliases
 link .bashrc
 link .gitconfig

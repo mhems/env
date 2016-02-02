@@ -2,6 +2,9 @@
     name = "Matt Hems"
     email = mhems1@binghamton.edu
 
+[init]
+    templatedir = ~/.git_template
+
 [core]
     editor = emacs
     whitespace = blank-at-eol, space-before-tab
@@ -26,7 +29,6 @@
     dl = pull origin master
     view = log origin/master HEAD master --graph --decorate --oneline
     last = log -1 HEAD
-
 
 # [help]
 #     autocorrect = 50
