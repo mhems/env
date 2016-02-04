@@ -20,11 +20,11 @@
 
 (setq indent-line-function 'insert-tab)
 
-(autoload 'cdlatex-mode "cdlatex" "CDLaTeX Mode" t)
-(autoload 'turn-on-cdlatex "cdlatex" "CDLaTeX Mode" nil)
+;; (autoload 'cdlatex-mode "cdlatex" "CDLaTeX Mode" t)
+;; (autoload 'turn-on-cdlatex "cdlatex" "CDLaTeX Mode" nil)
 
-(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-(add-hook 'latex-mode-hook 'turn-on-cdlatex)
+;; (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+;; (add-hook 'latex-mode-hook 'turn-on-cdlatex)
 
 (autoload 'markdown-mode "markdown-mode" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
