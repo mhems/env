@@ -7,6 +7,7 @@
 (require 'highlight-chars) ; for highlighting whitespace and char. groups
 (require 'rainbow-delimiters) ; color parens at different levels
 (require 'rfringe) ; right fringe
+(require 'diminish) ; for diminishing modeline
 (require 'color-theme) ; face themes
 (require 'anzu) ; show match stats in modeline
 (require 'wc-mode) ; word count in modeline
