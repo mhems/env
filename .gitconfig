@@ -14,6 +14,12 @@
 [color]
     ui = auto
 
+[diff]
+    tool = meld
+
+[difftool]
+    prompt = false
+
 [github]
     user = mhems
 
