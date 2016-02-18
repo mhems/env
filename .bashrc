@@ -27,6 +27,13 @@ function gen_ps1()
     if [ $exitcode -ne 0 ]; then
         RC=$BOLD_RED
     fi
+    gitstr=""
+    git rev-parse --is-inside-work-tree > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+	branch="$(git rev-parse --abbrev-ref HEAD)"
+	st=$([[ -z "$(git status -s)" ]] && echo "C" || echo "G")
+	gitstr=" ${BOLD_RED}(${branch}) ${st} ${END}"
+    fi
     PS1="[\!] ${GREEN}\u@\h${END} ${BOLD_BLUE}\w${END} \
-${GREEN}[\A]${END}\n${RC}\$${END} "
+${gitstr}${GREEN}[\A]${END}\n${RC}\$${END} "
 }
