@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+path=`git rev-parse --show-toplevel`
+for v in "$@"
+do
+    echo "$v" >> $path/.gitignore
+done
