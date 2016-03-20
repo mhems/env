@@ -1,1 +1,0 @@
-java -cp $CLASSPATH:. org.junit.runner.JUnitCore "$@"
