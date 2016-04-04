@@ -17,6 +17,6 @@
 (require 'found)
 (require 'keys)
 (require 'convenience)
-(require 'cedet-wrapper)
+;; (require 'cedet-wrapper) ; too slow
 (require 'c-wrapper)
 (require 'view) ; load this last
