@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [ -e "$SSH_CONNECTION" ]
+if [ -z "$SSH_CONNECTION" ]
 then
     /usr/bin/emacs $( echo "$@" | tr -d '&') &
 else
