@@ -37,6 +37,7 @@
     st = status
     d = diff
     di = diff --ignore-all-space
+    up = push
     dl = pull --rebase
     view = log origin/master HEAD master --graph --decorate --oneline
     v = log HEAD master --graph --decorate --oneline
