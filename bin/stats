@@ -11,20 +11,30 @@ from math import sqrt
 # stream-like manner if user doesn't want median and didn't provide
 # bounds. Otherwise, we're forced to sort and bring data into memory
 
+def get_field(line, index, separator):
+    l = line.split(separator)
+    return l[index] if index < len(l) else None
+
 def parse_data(datum, list_, index, sep):
-    res = num(datum)
-    if res is not None:
-        list_.append(res)
-    else:
-        list_.extend(nums_from_file(datum, index, sep))
+    field = get_field(datum, index, sep)
+    if field is not None:
+        res = num(field)
+        if res is not None:
+            list_.append(res)
+        else:
+            list_.extend(nums_from_file(datum, index, sep))
 
 def nums_from_file(file_, index, separator):
     nums = []
-    for line in open(file_, 'r'):
-        res = num(line.split(separator)[index])
-        if res is None:
-            raise RuntimeError('num in file')
-        nums.append(res)
+    with open(file_, 'r') as f:
+        for line in f:
+            field = get_field(line, separator, index)
+            if field is not None:
+                res = num(field)
+                if res is None:
+                    raise RuntimeError("'%s' is not a number (file '%s')" %
+                                       (tok, file_))
+                nums.append(res)
     return nums
 
 def num(num):
@@ -111,19 +121,23 @@ if __name__ == '__main__':
                         '%%m    Median among data\n'
                         '%%s    Standard deviation among data\n')
     parser.add_argument('DATA',
-                        nargs = '+',
-                        help = 'numbers and/or files to operate on')
+                        nargs = '*',
+                        help = 'numbers and/or files to operate on; uses stdin if empty')
     args = parser.parse_args()
-    list_ = []
 
-    for datum in args.DATA:
+    list_ = []
+    if len(args.DATA) > 0:
+        source = args.DATA
+    else:
+        source = list(filter(lambda x: len(x) > 0, map(str.strip, sys.stdin)))
+
+    for datum in source:
         parse_data(datum, list_, args.c, args.F)
 
     first = args.A
     last = args.B
     if args.C > 0:
         first = last = args.C
-
     t = collect(list_, first, last)
     if t[0] == 0:
         sys.exit(0)
