@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+   echo "Usage: $0 FILE LINES..."
+   exit 1
+fi
+
+file="$1"
+shift
+for line in "$@"
+do
+    echo "$line" >> "$file"
+done
+
+tail -n $(($# + 10)) "$file"

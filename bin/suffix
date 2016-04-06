@@ -1,8 +1,13 @@
 #!/bin/bash
 
-if [ $# -ne 2 ]; then
-   echo "Usage: suffix FILE SUFFIX"
+if [ $# -lt 2 ]; then
+   echo "Usage: $0 SUFFIX FILE..."
    exit 1
 fi
 
-mv "$1" "${1}${2}"
+suffix="$1"
+shift 1
+for file in "$@"
+do
+   mv "$file" "${file}${suffix}"
+done
