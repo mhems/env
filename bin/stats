@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+
+import sys
+import argparse
+from argparse import RawTextHelpFormatter
+from math import sqrt
+
+# For usage, run stats.py -h
+
+# If this proves slow in practice, can optimize to process in
+# stream-like manner if user doesn't want median and didn't provide
+# bounds. Otherwise, we're forced to sort and bring data into memory
+
+def parse_data(datum, list_, index, sep):
+    res = num(datum)
+    if res is not None:
+        list_.append(res)
+    else:
+        list_.extend(nums_from_file(datum, index, sep))
+
+def nums_from_file(file_, index, separator):
+    nums = []
+    for line in open(file_, 'r'):
+        res = num(line.split(separator)[index])
+        if res is None:
+            raise RuntimeError('num in file')
+        nums.append(res)
+    return nums
+
+def num(num):
+    try:
+        return int(num)
+    except:
+        try:
+            return float(num)
+        except:
+            return None
+
+def collect(nums, first, last):
+    sdev = 0
+    min = None
+    max = None
+    median = None
+    mean = None
+    sdev = None
+    if last > 0:
+        list_ = sorted(nums[first:-last])
+    else:
+        list_ = sorted(nums[first:])
+    N = len(list_)
+    if N > 0:
+        sum = 0
+        for n in list_:
+            sum += n
+            if min is None or n < min:
+                min = n
+            if max is None or n > max:
+                max = n
+        mean = sum/N
+        if N > 1:
+            sdev = 0
+            for n in list_:
+                sdev += (n - mean) ** 2
+            sdev /= N - 1
+            sdev = sqrt(sdev)
+        if N % 2 == 0:
+            median = (list_[N//2 - 1] + list_[N//2]) / 2
+        else:
+            median = list_[N//2]
+    return (N, min, max, median, mean, sdev)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Statistics Summarizer",
+                                     formatter_class=RawTextHelpFormatter)
+    parser.add_argument('-q',
+                        default = False,
+                        action = 'store_true',
+                        help = 'do not prefix results with labels')
+    parser.add_argument('-F',
+                        default = None,
+                        metavar = 'FS',
+                        help = 'separate columns by FS')
+    parser.add_argument('-c',
+                        default = 0,
+                        metavar = 'INDEX',
+                        type = int,
+                        help = 'pull numbers from column INDEX')
+    parser.add_argument('-A',
+                        default = 0,
+                        metavar = 'N',
+                        type = int,
+                        help = 'ignore N smallest numbers')
+    parser.add_argument('-B',
+                        default = 0,
+                        metavar = 'N',
+                        type = int,
+                        help = 'ignore N largest numbers')
+    parser.add_argument('-C',
+                        default = 0,
+                        metavar = 'N',
+                        type = int,
+                        help = 'ignore N smallest and largest numbers')
+    parser.add_argument('-f',
+                        metavar = 'FMT',
+                        help =
+                        'print results using format string FMT\n\nDirectives are:\n'
+                        '%%n    Length of data\n'
+                        '%%l    Minimum among data\n'
+                        '%%u    Maximum among data\n'
+                        '%%a    Average among data\n'
+                        '%%m    Median among data\n'
+                        '%%s    Standard deviation among data\n')
+    parser.add_argument('DATA',
+                        nargs = '+',
+                        help = 'numbers and/or files to operate on')
+    args = parser.parse_args()
+    list_ = []
+
+    for datum in args.DATA:
+        parse_data(datum, list_, args.c, args.F)
+
+    first = args.A
+    last = args.B
+    if args.C > 0:
+        first = last = args.C
+
+    t = collect(list_, first, last)
+    if t[0] == 0:
+        sys.exit(0)
+
+    labels = ['Num', 'Min', 'Max', 'Mean', 'Median', 'Std. Dev.']
+    if args.f is None:
+        for label, item in zip(labels, t):
+            if not args.q:
+                print(label, end=': ')
+            print(item)
+    else:
+        fmt = args.f
+        a = ['%n', '%l', '%u', '%a', '%m', '%s']
+        for meta, item in zip(a, t):
+            fmt = fmt.replace(meta, str(item))
+        print(fmt)
