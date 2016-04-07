@@ -51,6 +51,7 @@ def collect(nums, first, last):
     min = None
     max = None
     median = None
+    sum = None
     mean = None
     sdev = None
     if last > 0:
@@ -77,7 +78,7 @@ def collect(nums, first, last):
             median = (list_[N//2 - 1] + list_[N//2]) / 2
         else:
             median = list_[N//2]
-    return (N, min, max, median, mean, sdev)
+    return (N, min, max, sum, median, mean, sdev)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Statistics Summarizer",
@@ -117,9 +118,10 @@ if __name__ == '__main__':
                         '%%n    Length of data\n'
                         '%%l    Minimum among data\n'
                         '%%u    Maximum among data\n'
+                        '%%s    Sum among data\n'
                         '%%a    Average among data\n'
                         '%%m    Median among data\n'
-                        '%%s    Standard deviation among data\n')
+                        '%%v    Standard deviation among data\n')
     parser.add_argument('DATA',
                         nargs = '*',
                         help = 'numbers and/or files to operate on; uses stdin if empty')
@@ -142,7 +144,7 @@ if __name__ == '__main__':
     if t[0] == 0:
         sys.exit(0)
 
-    labels = ['Num', 'Min', 'Max', 'Mean', 'Median', 'Std. Dev.']
+    labels = ['Num', 'Min', 'Max', 'Sum', 'Mean', 'Median', 'Std. Dev.']
     if args.f is None:
         for label, item in zip(labels, t):
             if not args.q:
@@ -150,7 +152,7 @@ if __name__ == '__main__':
             print(item)
     else:
         fmt = args.f
-        a = ['%n', '%l', '%u', '%a', '%m', '%s']
+        a = ['%n', '%l', '%u', '%s', '%a', '%m', '%v']
         for meta, item in zip(a, t):
             fmt = fmt.replace(meta, str(item))
         print(fmt)
