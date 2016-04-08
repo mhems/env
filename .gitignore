@@ -1,18 +1,24 @@
-# Compiled Objects
-
-*.o
-*.a
-*.elc
-*.class
-__pycache__
-*.py[cod]
-*.dll
-*.exe
-*.so
-
 # Backups
-
 *.swp
 *.bak
 *~
 *#
+
+# C/C++
+*.so
+*.o
+*.a
+
+# Java
+*.class
+
+# Python
+__pycache__
+*.py[cod]
+
+# LaTex
+*.log
+*.aux
+
+# Elisp
+*.elc
