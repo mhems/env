@@ -16,6 +16,8 @@
 (require 'macros)
 (require 'found)
 (require 'keys)
+(require 'templates)
+(require 'skeletons)
 (require 'convenience)
 ;; (require 'cedet-wrapper) ; too slow
 (require 'c-wrapper)
