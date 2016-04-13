@@ -2,7 +2,7 @@
 
 # *** COLORS ***
 export PROMPT_COMMAND=gen_ps1
-export TERM=xterm-256color
+[ $TERM = xterm ] && export TERM=xterm-256color
 export PYTHONSTARTUP=/home/`whoami`/.pystartup
 export SHELL="/bin/bash"
 export EDITOR="/usr/bin/emacs"
@@ -11,7 +11,7 @@ export PATH=~/bin:$PATH
 
 . ~/.bash_aliases
 
-# make these last so local changes take priority
+# make these appear last so local configuration takes priority
 [ -e ~/.localrc ] && . ~/.localrc
 [ -d ~/local ] && export PATH=~/local:$PATH
 
@@ -29,6 +29,10 @@ function gen_ps1()
     if [ $exitcode -ne 0 ]; then
         RC=$BOLD_RED
     fi
-    PS1="\[\e]0;\W\a\][\!] ${GREEN}\u@\h${END} ${BOLD_BLUE}\w${END} \
+    local title=''
+    if [ $TERM != dumb ]; then
+        title='\[\e]0;\W\a\]'
+    fi
+    PS1="${title}[\!] ${GREEN}\u@\h${END} ${BOLD_BLUE}\w${END} \
 ${GREEN}[\A]${END}\n${RC}\$${END} "
 }
