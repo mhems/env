@@ -26,7 +26,7 @@ alias lr='ls -lhr'
 alias lla='ll -A'
 alias ps='ps -Fa'
 alias rm='rm -i --preserve-root'
-alias val='valgrind  --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes' # --track-origins=yes
+alias val='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20' # --track-origins=yes
 alias wl='wc -l'
 alias xterm='xterm -rv'
 
