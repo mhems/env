@@ -17,18 +17,18 @@ def get_field(line, index, separator):
 
 def parse_data(datum, list_, index, sep):
     field = get_field(datum, index, sep)
-    if field is not None:
-        res = num(field)
-        if res is not None:
-            list_.append(res)
-        else:
-            list_.extend(nums_from_file(datum, index, sep))
+    res = num(field)
+    if res is not None:
+        list_.append(res)
+    else:
+        list_.extend(nums_from_file(datum, index, sep))
 
 def nums_from_file(file_, index, separator):
     nums = []
     with open(file_, 'r') as f:
         for line in f:
-            field = get_field(line, separator, index)
+            line = line.strip()
+            field = get_field(line, index, separator)
             if field is not None:
                 res = num(field)
                 if res is None:
@@ -60,7 +60,7 @@ def collect(nums, first, last):
         list_ = sorted(nums[first:])
     N = len(list_)
     if N > 0:
-        sum = 0
+        sum = 0.0
         for n in list_:
             sum += n
             if min is None or n < min:
@@ -78,7 +78,7 @@ def collect(nums, first, last):
             median = (list_[N//2 - 1] + list_[N//2]) / 2
         else:
             median = list_[N//2]
-    return (N, min, max, sum, median, mean, sdev)
+    return (N, min, max, sum, mean, median, sdev)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Statistics Summarizer",
