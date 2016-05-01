@@ -16,6 +16,7 @@
 (setq-default tab-width 4
               indent-tabs-mode nil)
 
+(global-linum-mode) ; line numbers
 (global-anzu-mode 1) ; show match stats in modeline
 (electric-pair-mode 1) ; auto-insert closing paren pairs
 (tool-bar-mode -1) ; no toolbar
@@ -49,7 +50,13 @@
       query-replace-highlight 1
       mouse-sel-retain-highlight 1)
 
+(defun my-shell-mode-hook ()
+  "Toggle off in shell"
+  (global-whitespace-mode)
+  (global-linum-mode))
+
 (add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
 (add-hook 'font-lock-mode-hook 'hc-highlight-trailing-whitespace)
+(add-hook 'shell-mode-hook 'my-shell-mode-hook)
 
 (provide 'view)
