@@ -1,0 +1,27 @@
+% ls-R -- filename database for kpathsea; do not change this line.
+./:
+.:
+enumitem
+listings
+ls-R
+
+./enumitem:
+enumitem.pdf
+enumitem.sty
+enumitem.tex
+README
+
+./listings:
+listings-acm.prf
+listings-bash.prf
+listings.cfg
+listings-fortran.prf
+listings-lua.prf
+listings-python.prf
+listings.sty
+lstdoc.sty
+lstlang1.sty
+lstlang2.sty
+lstlang3.sty
+lstmisc.sty
+

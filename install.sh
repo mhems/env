@@ -15,6 +15,7 @@ function link()
 }
 
 link bin
+link texmf
 link .emacs.d
 link .git_template
 
