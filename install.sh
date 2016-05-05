@@ -1,28 +1,44 @@
 #!/bin/bash
 
-function link()
+# USAGE: ./install.sh [OPTIONS]
+#
+# OPTIONS
+#     -c    forcefully remove existing symlinks
+
+base=$PWD
+plain=(bin texmf)
+dot=(emacs.d git_template bash_aliases bashrc editrc
+     gitconfig gitignore pylintrc pystartup)
+
+function symlink()
 {
-    if [ ! -e ~/$1 ]
-    then
-        ln -s $PWD/$1 ~/$1
-        echo 'Linked' $PWD/$1 'to' ~/$1
-    elif [ -L ~/$1 ]
-    then
-        echo ~/$1 'already exists as link'
+    src="$PWD/$1"
+    dest=~/"$2$1"
+    if [ ! -e $dest ]; then
+        ln -s $src $dest
+        echo "Symlinked $src to $dest"
+    elif [ -L "$dest" ]; then
+        echo "$dest already exists as symlink"
     else
-        echo ~/$1 'already exists, no link was created'
+        echo "$dest already exists, no symlink was created"
     fi
 }
 
-link bin
-link texmf
-link .emacs.d
-link .git_template
+if [ "$1" = '-c' ]; then
+    shift
+    for f in "${plain[@]}"; do
+	rm -f "~/$f"
+	echo "Removed ~/$f symlink"
+    done
+    for f in "${dot[@]}"; do
+	rm -f "~/.$f"
+	echo "Removed ~/.$f symlink"
+    done
+fi
 
-link .bash_aliases
-link .bashrc
-link .editrc
-link .gitconfig
-link .gitignore
-link .pylintrc
-link .pystartup
+for f in "${plain[@]}"; do
+    symlink "$f"
+done
+for f in "${dot[@]}"; do
+    symlink "$f" '.'
+done
