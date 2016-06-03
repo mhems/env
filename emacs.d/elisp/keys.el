@@ -2,6 +2,9 @@
 
 (require 'cc-mode) ; various c-like modes
 
+(require 'command-frequency)
+(command-frequency-mode 1) ; track my usage
+
 (defalias 'qrr 'query-replace-regexp)
 (defalias 'c 'comment-region)
 (defalias 'uc 'uncomment-region)
@@ -11,14 +14,9 @@
 (setq minibuffer-prompt-properties
       (quote
        (read-only t point-enter minibuffer-avoid-prompt face minibuffer-prompt)))
-(global-set-key (kbd "<f7>")      'fold-dwim-toggle)
-(global-set-key (kbd "<M-f7>")    'fold-dwim-hide-all)
-(global-set-key (kbd "<S-M-f7>")  'fold-dwim-show-all)
+
 (global-set-key (kbd "M-;") 'evilnc-comment-or-uncomment-lines)
 (global-set-key (kbd "C-x j") 'crosshairs-flash)
-(global-set-key (kbd "C-?") 'semantic-ia-describe-class)
-(global-set-key (kbd "") 'semantic-ia-fast-jump)
-(global-set-key (kbd "") 'semantic-symref)
 (global-set-key (kbd "M-n") 'move-line-region-down)
 (global-set-key (kbd "M-p") 'move-line-region-up)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)

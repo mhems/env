@@ -37,14 +37,11 @@
     st = status
     d = diff
     di = diff --ignore-all-space
-    up = push
-    dl = pull --rebase
+    up = push origin master
+    dl = pull origin master
     view = log origin/master HEAD master --graph --decorate --oneline
     v = log HEAD master --graph --decorate --oneline
     last = log -1 HEAD
 
 [push]
     default = simple
-
-# [help]
-#     autocorrect = 50

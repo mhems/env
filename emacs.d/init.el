@@ -1,7 +1,8 @@
 ;; top-level emacs customization
 
 
-(add-to-list 'load-path "~/.emacs.d/elisp/")
+(add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/elpa/command-frequency-1.1")
 
 ;; establish archives
 (require 'package)
