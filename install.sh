@@ -7,7 +7,8 @@
 
 base=$PWD
 plain=(bin texmf)
-dot=(emacs.d git_template bash_aliases bashrc editrc
+dot=(emacs.d i3
+     git_template bash_aliases bashrc editrc
      gitconfig gitignore pylintrc pystartup)
 
 function symlink()
@@ -27,12 +28,12 @@ function symlink()
 if [ "$1" = '-c' ]; then
     shift
     for f in "${plain[@]}"; do
-	rm -f "~/$f"
-	echo "Removed ~/$f symlink"
+        rm -f "~/$f"
+        echo "Removed ~/$f symlink"
     done
     for f in "${dot[@]}"; do
-	rm -f "~/.$f"
-	echo "Removed ~/.$f symlink"
+        rm -f "~/.$f"
+        echo "Removed ~/.$f symlink"
     done
 fi
 
