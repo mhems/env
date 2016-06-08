@@ -77,7 +77,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -146,8 +146,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-    # position top
-    status_command i3status # update
+    status_command i3status
 }
 
 bindsym $mod+p focus parent
@@ -155,6 +154,7 @@ bindsym $mod+c focus child
 bindsym $mod+a workspace prev
 # bindsym $mod+f workspace next
 bindsym $mod+b workspace back_and_forth
+bindsym $mod+w exec xrandr --output eDP1 --off
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
@@ -176,19 +176,49 @@ bindsym $mod+minus scratchpad show
 # Taken from https://i3wm.org/docs/userguide.html#binding_modes
 # Press $mod+i followed by either f, c, Esc or Return to launch firefox,
 # google-chrome or return to the default mode, respectively.
-# set $mode_launcher Launch: [f]irefox [c]hrome
-# bindsym $mod+i mode "$mode_launcher"
+set $mode_launcher Launch: [f]irefox [c]hrome
+bindsym $mod+i mode "$mode_launcher"
 
-#mode "$mode_launcher" {
-#    bindsym f exec firefox
-#    bindsym c exec google-chrome
-#    bindsym Esc mode "default"
-#    bindsym Return mode "default"
-#}
-
-# assign [class="gnome-terminal"] 2
-# workspace 1 output HDMI1 eDP1
-# focus_follows_mouse no
+mode "$mode_launcher" {
+   bindsym f exec firefox
+   bindsym c exec google-chrome
+   bindsym Esc mode "default"
+   bindsym Return mode "default"
+}
 
 # remember where I came from
 workspace_auto_back_and_forth yes
+
+# power management (taken from https://wiki.archlinux.org/index.php/i3#i3status)
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Delete mode "$mode_system"
+
+# external displays
+set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+BackSpace modlle "$mode_display"

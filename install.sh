@@ -9,7 +9,8 @@ base=$PWD
 plain=(bin texmf)
 dot=(emacs.d i3
      git_template bash_aliases bashrc editrc
-     gitconfig gitignore pylintrc pystartup)
+     gitconfig gitignore pylintrc pystartup
+     i3status.conf)
 
 function symlink()
 {
