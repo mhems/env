@@ -15,6 +15,20 @@ export PATH=~/bin:$PATH
 [ -e ~/.localrc ] && . ~/.localrc
 [ -d ~/local ] && export PATH=~/local:$PATH
 
+function dirs
+{
+    builtin dirs -v
+}
+
+function pushd
+{
+    builtin pushd "$@" > /dev/null
+}
+
+function popd
+{
+    builtin popd "$@" > /dev/null
+}
 
 # Generate PS1 dynamically to color prompt based on exit code of last command
 function gen_ps1()
