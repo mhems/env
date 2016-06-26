@@ -9,7 +9,7 @@ from math import sqrt
 
 # If this proves slow in practice, can optimize to process in
 # stream-like manner if user doesn't want median and didn't provide
-# bounds. Otherwise, we're forced to sort and bring data into memory
+# bounds. Otherwise, we're forced to sort and bring data into memory.
 
 def get_field(line, index, separator):
     l = line.split(separator)
@@ -47,7 +47,6 @@ def num(num):
             return None
 
 def collect(nums, first, last):
-    sdev = 0
     min = None
     max = None
     median = None
@@ -60,14 +59,14 @@ def collect(nums, first, last):
         list_ = sorted(nums[first:])
     N = len(list_)
     if N > 0:
-        sum = 0.0
+        sum = 0
         for n in list_:
             sum += n
             if min is None or n < min:
                 min = n
             if max is None or n > max:
                 max = n
-        mean = sum/N
+        mean = sum/float(N)
         if N > 1:
             sdev = 0
             for n in list_:
@@ -122,6 +121,14 @@ if __name__ == '__main__':
                         '%%a    Average among data\n'
                         '%%m    Median among data\n'
                         '%%v    Standard deviation among data\n')
+    parser.add_argument('-s',
+                        default = False,
+                        action = 'store_true',
+                        help = 'only output the sum (-q assumed)')
+    parser.add_argument('-a',
+                        default = False,
+                        action = 'store_true',
+                        help = 'only output the average (-q assumed)')
     parser.add_argument('DATA',
                         nargs = '*',
                         help = 'numbers and/or files to operate on; uses stdin if empty')
@@ -144,8 +151,13 @@ if __name__ == '__main__':
     if t[0] == 0:
         sys.exit(0)
 
-    labels = ['Num', 'Min', 'Max', 'Sum', 'Mean', 'Median', 'Std. Dev.']
+    if args.s:
+        args.f = '%s'
+    if args.a:
+        args.f = '%a'
+
     if args.f is None:
+        labels = ['Num', 'Min', 'Max', 'Sum', 'Mean', 'Median', 'Std. Dev.']
         for label, item in zip(labels, t):
             if not args.q:
                 print(label, end=': ')
