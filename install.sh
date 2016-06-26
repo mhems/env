@@ -7,7 +7,7 @@
 
 base=$PWD
 plain=(bin texmf)
-dot=(emacs.d i3
+dot=(emacs.d i3 Xresources xinitrc
      git_template bash_aliases bashrc editrc
      gitconfig gitignore pylintrc pystartup
      i3status.conf)
