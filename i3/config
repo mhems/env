@@ -162,9 +162,11 @@ bindsym $mod+w exec xrandr --output eDP1 --off
 bindsym $mod+x move workspace to output right
 
 # media
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 '+2%'
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 '-2%'
-bindsym $mod+m exec --no-startup-id pactl set-sink-volume 1 '0'
+set $sink 1
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink '+2%'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink '-2%'
+bindsym $mod+m               exec --no-startup-id toggle-mute
+
 # lock screen
 bindsym $mod+y exec i3lock
 
