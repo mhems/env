@@ -7,10 +7,12 @@
 
 base=$PWD
 plain=(bin texmf)
-dot=(emacs.d i3 Xresources xinitrc
-     git_template bash_aliases bashrc editrc
-     gitconfig gitignore pylintrc pystartup
-     i3status.conf)
+dot=(emacs.d
+     xinitrc Xresources Xresources.solarized
+     bashrc bash_aliases editrc
+     git_template gitconfig gitignore
+     pylintrc pystartup
+     i3 i3status.conf)
 
 function symlink()
 {

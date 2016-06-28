@@ -24,7 +24,6 @@ alias ps='ps -Fa'
 alias rm='rm -i --preserve-root'
 alias val='valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20'
 alias wl='wc -l'
-alias xterm='xterm -rv'
 
 # CONVENIENCE
 alias edit='emacs ~/.bashrc'
