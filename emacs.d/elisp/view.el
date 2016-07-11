@@ -27,14 +27,13 @@
 (column-number-mode 1) ; show column number in modeline
 (global-whitespace-mode 1) ; show whitespace
 
-(setq whitespace-style '(face tabs lines-tail space-before-tab))
+(setq whitespace-style '(face lines-tail space-before-tab))
 (setq whitespace-line-column 80)
 
 ; do not clutter mode line
 (diminish 'anzu-mode)
 (diminish 'auto-complete-mode)
 (diminish 'doc-mode)
-(diminish 'global-whitespace-mode)
 (diminish 'abbrev-mode)
 
 (set-mouse-color "black")
@@ -50,13 +49,6 @@
       query-replace-highlight 1
       mouse-sel-retain-highlight 1)
 
-(defun my-shell-mode-hook ()
-  "Toggle off in shell"
-  (global-whitespace-mode)
-  (global-linum-mode))
-
-(add-hook 'font-lock-mode-hook 'hc-highlight-tabs)
 (add-hook 'font-lock-mode-hook 'hc-highlight-trailing-whitespace)
-(add-hook 'shell-mode-hook 'my-shell-mode-hook)
 
 (provide 'view)

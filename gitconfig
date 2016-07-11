@@ -1,21 +1,38 @@
-[user]
-    name = "Matt Hems"
-    email = mhems1@binghamton.edu
+[alias]
+    amend = commit --no-edit --amend
+    br = branch
+    cam = commit -am
+    ci = commit
+    cim = commit -m
+    co = checkout
+    cob = checkout -b
+    d = diff
+    di = diff --ignore-all-space
+    dl = pull origin master
+    iadd = add --patch
+    last = log -1 HEAD
+    st = status
+    uncommit = reset --soft HEAD
+    unstage = reset HEAD
+    up = push origin master
+    v = log HEAD master --graph --decorate --oneline
+    view = log origin/master HEAD master --graph --decorate --oneline
 
-[init]
-    templatedir = ~/.git_template
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+    ui = auto
 
 [core]
     editor = emacs
-    whitespace = blank-at-eol, space-before-tab
     excludesfile = ~/.gitignore
     pager = less -F
+    whitespace = blank-at-eol, space-before-tab
 
 [credential]
     helper = cache
-
-[color]
-    ui = auto
 
 [diff]
     tool = meld
@@ -23,25 +40,21 @@
 [difftool]
     prompt = false
 
+[gc]
+    auto = 1
+
 [github]
     user = mhems
 
-[alias]
-    co = checkout
-    cob = checkout -b
-    ci = commit
-    cim = commit -m
-    cam = commit -am
-    amend = commit --no-edit --amend
-    br = branch
-    st = status
-    d = diff
-    di = diff --ignore-all-space
-    up = push origin master
-    dl = pull origin master
-    view = log origin/master HEAD master --graph --decorate --oneline
-    v = log HEAD master --graph --decorate --oneline
-    last = log -1 HEAD
+[init]
+    templatedir = ~/.git_template
+
+[merge]
+    summary = true
 
 [push]
     default = simple
+
+[user]
+    email = mhems1@binghamton.edu
+    name = "Matt Hems"
