@@ -1,4 +1,10 @@
+*reverseVideo: false
+*SaveLines: 16384
+*ScrollBar: false
+
 XTerm*metaSendsEscape: true
-XTerm*reverseVideo: on
-XTerm*ScrollBar: false
-XTerm*SaveLines: 16384
+
+URxvt.fading: 30
+URxvt.perl-ext-common: default,matcher,-searchable-scrollback
+URxvt.url-launcher: firefox
+URxvt.matcher.button: 1

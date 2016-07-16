@@ -117,32 +117,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-
-    # Pressing left will shrink the window’s width.
-    # Pressing right will grow the window’s width.
-    # Pressing up will shrink the window’s height.
-    # Pressing down will grow the window’s height.
-    bindsym j resize shrink width 10 px or 10 ppt
-    bindsym k resize grow height 10 px or 10 ppt
-    bindsym l resize shrink height 10 px or 10 ppt
-    bindsym semicolon resize grow width 10 px or 10 ppt
-
-    # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+r mode "resize"
-
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -153,8 +127,10 @@ bar {
 bindsym $mod+p focus parent
 bindsym $mod+c focus child
 bindsym $mod+a workspace prev
+
 # bindsym $mod+f workspace next
 bindsym $mod+b workspace back_and_forth
+
 bindsym $mod+w exec xrandr --output eDP1 --off
 
 # Move the current workspace to the next output
@@ -163,10 +139,11 @@ bindsym $mod+x move workspace to output right
 
 # media
 set $sink 1
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink '+2%'
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink '-2%'
-bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   $sink toggle
-bindsym $mod+m               exec --no-startup-id pactl set-sink-mute   $sink toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id vol '+2%'
+bindsym XF86AudioLowerVolume exec --no-startup-id vol '-2%'
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute $sink toggle
+bindsym $mod+m               exec --no-startup-id pactl set-sink-mute $sink toggle
+
 bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/screenshots'
 
 # lock screen
@@ -178,26 +155,51 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
-# Taken from https://i3wm.org/docs/userguide.html#binding_modes
-# Press $mod+i followed by either f, c, Esc or Return to launch firefox,
-# google-chrome or return to the default mode, respectively.
-set $mode_launcher Launch: [f]irefox [c]hrome
-bindsym $mod+i mode "$mode_launcher"
-
-mode "$mode_launcher" {
-   bindsym f exec firefox, mode "default"
-   bindsym c exec google-chrome, mode "default"
-   bindsym Esc mode "default"
-   bindsym Return mode "default"
-}
-
 # remember where I came from
 workspace_auto_back_and_forth yes
 
 # power management (taken from https://wiki.archlinux.org/index.php/i3#i3status)
 set $Locker i3lock && sleep 1
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+# modes
+
+bindsym $mod+q mode "$volume"
+mode "$volume" {
+    bindsym Left   exec --no-startup-id vol '-2%'
+    bindsym Down   exec --no-startup-id vol '-2%'
+    bindsym Right  exec --no-startup-id vol '+2%'
+    bindsym Up     exec --no-startup-id vol '+2%'
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym j         resize shrink width  10 px or 10 ppt
+    bindsym k         resize grow   height 10 px or 10 ppt
+    bindsym l         resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow   width  10 px or 10 ppt
+
+    bindsym Left      resize shrink width  10 px or 10 ppt
+    bindsym Down      resize grow   height 10 px or 10 ppt
+    bindsym Up        resize shrink height 10 px or 10 ppt
+    bindsym Right     resize grow   width  10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+set $mode_launcher Launch: (f)irefox (c)hrome
+bindsym $mod+i mode "$mode_launcher"
+mode "$mode_launcher" {
+   bindsym f exec firefox, mode "default"
+   bindsym c exec google-chrome, mode "default"
+   bindsym Escape mode "default"
+   bindsym Return mode "default"
+}
+
+set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
+bindsym $mod+Delete mode "$mode_system"
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
@@ -205,15 +207,12 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Delete mode "$mode_system"
-
-set $mode_term Terminal (g) gnome-terminal, (x) xterm, (u) urxvt
+set $mode_term Terminal (g)nome-terminal, (x)term, (u)rxvt
+bindsym $mod+g mode "$mode_term"
 mode "$mode_term" {
     bindsym g exec --no-startup-id gnome-terminal, mode "default"
     bindsym x exec --no-startup-id xterm, mode "default"
@@ -221,19 +220,15 @@ mode "$mode_term" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+g mode "$mode_term"
 
-# external displays
 set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+bindsym $mod+BackSpace mode "$mode_display"
 mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1 --auto --right-of LVDS1, mode "default"
+    bindsym v exec --no-startup-id xrandr --output VGA1  --auto --right-of LVDS1, mode "default"
     bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+    bindsym x exec --no-startup-id xrandr --output VGA1  --auto --off, mode "default"
     bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
 
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-# Declare here the shortcut to bring the display selection menu
-bindsym $mod+BackSpace mode "$mode_display"

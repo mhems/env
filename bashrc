@@ -1,3 +1,4 @@
+# don't run if not interactive
 [ -z "$PS1" ] && exit
 
 export PYTHONSTARTUP=/home/`whoami`/.pystartup
@@ -17,17 +18,17 @@ export PATH=~/bin:$PATH
 [ -e ~/.localrc ] && . ~/.localrc
 [ -d ~/local ] && export PATH=~/local:$PATH
 
-function dirs
+function p
 {
     builtin dirs -v "$@"
 }
 
-function pushd
+function pu
 {
     builtin pushd "$@" > /dev/null
 }
 
-function popd
+function po
 {
     builtin popd "$@" > /dev/null
 }
