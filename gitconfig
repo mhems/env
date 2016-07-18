@@ -11,9 +11,9 @@
     dl = pull origin master
     iadd = add --patch
     last = log -1 HEAD
-    pl = git pull
-    pr = git pull --rebase
-    ps = git push
+    pl = pull
+    pr = pull --rebase
+    ps = push
     st = status
     uncommit = reset --soft HEAD
     unstage = reset HEAD
