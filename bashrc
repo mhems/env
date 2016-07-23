@@ -2,8 +2,9 @@
 [ -z "$PS1" ] && exit
 
 export PYTHONSTARTUP=/home/`whoami`/.pystartup
-export SHELL=/bin/bash
-export EDITOR=/usr/bin/emacs
+export SHELL=bash
+export EDITOR=emacs
+export PAGER=less
 
 export PROMPT_COMMAND=gen_ps1
 [ $TERM = xterm ] && export TERM=xterm-256color
@@ -13,6 +14,8 @@ export GREP_COLORS='1;34'
 export PATH=~/bin:$PATH
 
 . ~/.bash_aliases
+
+set -o noclobber
 
 # make these appear last so local configuration takes priority
 [ -e ~/.localrc ] && . ~/.localrc

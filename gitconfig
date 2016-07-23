@@ -1,4 +1,5 @@
 [alias]
+    alias = config --get-regexp ^alias
     amend = commit --no-edit --amend
     br = branch
     cam = commit -am

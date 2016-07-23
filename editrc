@@ -1,6 +1,6 @@
 # emacs key-bindings
 bind -e
 
-history size 10000
+history size 16384
 # ignore successive duplicates
 history unique 1

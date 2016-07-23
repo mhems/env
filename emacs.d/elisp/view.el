@@ -44,6 +44,9 @@
       inhibit-startup-message 1)
 (setq show-paren-style 'expression
       show-parens-style 'expression)
+; empty *scratch* buffer
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'fundamental-mode)
 ; highlight search/replace results
 (setq search-highlight 1
       query-replace-highlight 1

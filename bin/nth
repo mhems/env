@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Usage: nth [-F FS] N FILES..
+
+if [[ "$1" =~ '-F' ]]
+then
+    if [ ${#1} -gt 2 ]
+    then
+        FS="${1#-F}"
+    else
+        FS="$2"
+        shift
+    fi
+    shift
+fi
+
+N=$1
+shift
+
+if [[ "$FS" ]]
+then
+    awk -F "$FS" '{print $n}' n=$N "$@"
+else
+    awk          '{print $n}' n=$N "$@"
+fi
