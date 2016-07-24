@@ -1,9 +1,11 @@
 *reverseVideo: false
-*SaveLines: 16384
-*ScrollBar: false
 
+XTerm*SaveLines: 16384
+XTerm*ScrollBar: false
 XTerm*metaSendsEscape: true
 
+URxvt.saveLines: 16384
+URxvt.scrollBar: false
 URxvt.fading: 30
 URxvt.perl-ext-common: default,matcher,-searchable-scrollback
 URxvt.url-launcher: firefox
