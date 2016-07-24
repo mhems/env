@@ -12,7 +12,7 @@ dot=(emacs.d
      bashrc bash_aliases editrc
      git_template gitconfig gitignore
      pylintrc pystartup
-     i3 i3status.conf)
+     i3 i3status.conf i3py3status.conf i3blocks.conf)
 
 function symlink()
 {

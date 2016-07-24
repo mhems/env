@@ -122,6 +122,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bar {
     position top
     status_command i3status
+    # status_command i3blocks
+    # status_command py3status -c ~/.i3status.conf
 }
 
 bindsym $mod+p focus parent
