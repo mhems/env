@@ -10,12 +10,16 @@
 
 import atexit
 import os
+import sys
 import readline
 import rlcompleter
+import math # for using python as calculator
 
 historyPath = os.path.expanduser("~/.pyhistory")
 
 readline.parse_and_bind('tab: complete')
+
+print('Python', sys.version.split('\n')[0])
 
 def save_history(historyPath=historyPath):
     import readline
@@ -23,6 +27,7 @@ def save_history(historyPath=historyPath):
 
 if os.path.exists(historyPath):
     readline.read_history_file(historyPath)
+    print('history imported from ~/.pyhistory')
 
 atexit.register(save_history)
-del os, atexit, readline, rlcompleter, save_history, historyPath
+del os, sys, atexit, readline, rlcompleter, save_history, historyPath
