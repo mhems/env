@@ -25,4 +25,6 @@
 (global-set-key (kbd "C-x b") 'electric-buffer-list)
 (global-set-key (kbd "C-c c") 'execute-extended-command) ; M-x
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 (provide 'keys)

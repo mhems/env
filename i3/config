@@ -171,6 +171,8 @@ mode "volume" {
     bindsym Down   exec --no-startup-id vol '-2%'
     bindsym Right  exec --no-startup-id vol '+2%'
     bindsym Up     exec --no-startup-id vol '+2%'
+    bindsym --whole-window Button4 exec --no-startup-id vol '+2%'
+    bindsym --whole-window Button5 exec --no-startup-id vol '-2%'
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }

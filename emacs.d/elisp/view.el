@@ -29,6 +29,7 @@
 
 (setq whitespace-style '(face lines-tail space-before-tab))
 (setq whitespace-line-column 80)
+(setq-default fill-column 80)
 
 ; do not clutter mode line
 (diminish 'anzu-mode)
@@ -51,6 +52,9 @@
 (setq search-highlight 1
       query-replace-highlight 1
       mouse-sel-retain-highlight 1)
+
+;; highlight progress keywords
+(font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\):" 1 font-lock-warning-face t)))
 
 (add-hook 'font-lock-mode-hook 'hc-highlight-trailing-whitespace)
 
