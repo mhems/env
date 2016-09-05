@@ -140,8 +140,8 @@ bindsym $mod+x move workspace to output right
 
 # media
 set $sink 1
-bindsym XF86AudioRaiseVolume exec --no-startup-id vol '+2%'
-bindsym XF86AudioLowerVolume exec --no-startup-id vol '-2%'
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $sink  '+2%'
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $sink  '-2%'
 bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute $sink toggle
 bindsym $mod+m               exec --no-startup-id pactl set-sink-mute $sink toggle
 
@@ -167,12 +167,12 @@ bindsym $mod+Shift+d exec python ~/.i3/winmenu.py
 
 bindsym $mod+Shift+v mode "volume"
 mode "volume" {
-    bindsym Left   exec --no-startup-id vol '-2%'
-    bindsym Down   exec --no-startup-id vol '-2%'
-    bindsym Right  exec --no-startup-id vol '+2%'
-    bindsym Up     exec --no-startup-id vol '+2%'
-    bindsym --whole-window Button4 exec --no-startup-id vol '+2%'
-    bindsym --whole-window Button5 exec --no-startup-id vol '-2%'
+    bindsym Left  exec --no-startup-id pactl set-sink-volume $sink '-2%'
+    bindsym Down  exec --no-startup-id pactl set-sink-volume $sink '-2%'
+    bindsym Right exec --no-startup-id pactl set-sink-volume $sink '+2%'
+    bindsym Up    exec --no-startup-id pactl set-sink-volume $sink '+2%'
+    bindsym --whole-window Button4 exec --no-startup-id pactl set-sink-volume $sink '+2%'
+    bindsym --whole-window Button5 exec --no-startup-id pactl set-sink-volume $sink '-2%'
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
@@ -193,11 +193,11 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-set $mode_launcher Launch: (f)irefox (c)hrome
+set $mode_launcher Launch: (f)irefox (c)hromium
 bindsym $mod+i mode "$mode_launcher"
 mode "$mode_launcher" {
    bindsym f exec firefox, mode "default"
-   bindsym c exec google-chrome, mode "default"
+   bindsym c exec chromium, mode "default"
    bindsym Escape mode "default"
    bindsym Return mode "default"
 }
@@ -226,13 +226,15 @@ mode "$mode_term" {
     bindsym Escape mode "default"
 }
 
-set $mode_display Ext Screen (v) VGA ON, (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+set $mode_display Ext Screen (d) LAP ON, (f) LAP OFF, (j) HOME ON, (k) HOME OFF, (g) LAB ON, (h) LAB OFF
 bindsym $mod+BackSpace mode "$mode_display"
 mode "$mode_display" {
-    bindsym v exec --no-startup-id xrandr --output VGA1  --auto --right-of LVDS1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of LVDS1, mode "default"
-    bindsym x exec --no-startup-id xrandr --output VGA1  --auto --off, mode "default"
-    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+    bindsym d exec --no-startup-id xrandr --output eDP1  --auto --left-of  HDM1, mode "default"
+    bindsym f exec --no-startup-id xrandr --output eDP1  --off, mode "default"
+    bindsym j exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
+    bindsym k exec --no-startup-id xrandr --output HDMI1 --off, mode "default"
+    bindsym g exec --no-startup-id xrandr --output VGA   --auto --left-of  eDP1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output VGA   --off, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
