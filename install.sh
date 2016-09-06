@@ -15,6 +15,7 @@ dot=(
      pylintrc pystartup
      i3 i3status.conf
      ssh/config
+     config/ranger config/conky config/mpv
      )
 
 function symlink()

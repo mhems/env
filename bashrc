@@ -14,6 +14,7 @@ export GREP_COLORS='1;34'
 export PATH=~/bin:$PATH
 
 . ~/.bash_aliases
+. /usr/share/doc/pkgfile/command-not-found.bash
 
 set -o noclobber
 
