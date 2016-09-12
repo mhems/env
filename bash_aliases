@@ -35,7 +35,6 @@ alias h='history | tail -n 20'
 alias path='echo $PATH | sed '"'"'s/:/\n/g'"'"
 alias rec='ll | head -n 20'
 alias plz='sudo bash -c "$(history -p !!)"'
-alias off='sudo ~/bin/off'
 alias py='python3 -q'
 alias dirdiff='diff -rq'
 alias idiff='diff -Bibw --ignore-all-space --ignore-blank-lines'

@@ -8,9 +8,7 @@
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
-set $Locker i3lock -i ~/.i3/bkg_imgs/41.png && sleep 1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -116,7 +114,16 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+set $mode_exit Exit? (Y)es) (N)o
+bindsym $mod+Shift+e mode "$mode_exit"
+mode "$mode_exit" {
+    bindsym Y exec --no-startup-id i3-msg exit
+    bindsym y exec --no-startup-id i3-msg exit
+    bindsym N mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -132,8 +139,6 @@ bindsym $mod+a workspace prev
 # bindsym $mod+f workspace next
 bindsym $mod+b workspace back_and_forth
 
-bindsym $mod+w exec xrandr --output eDP1 --off
-
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
 bindsym $mod+x move workspace to output right
@@ -148,7 +153,9 @@ bindsym $mod+m               exec --no-startup-id pactl set-sink-mute $sink togg
 bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/screenshots'
 
 # lock screen
-bindsym $mod+y exec $Locker
+bindsym $mod+y exec --no-startup-id lock
+
+bindsym $mod+Shift+d exec --no-startup-id emacs
 
 # scratchpad
 # Make the currently focused window a scratchpad
@@ -160,11 +167,9 @@ bindsym $mod+minus scratchpad show
 workspace_auto_back_and_forth yes
 
 for_window [class="Pithos"] floating enable
-
-bindsym $mod+Shift+d exec python ~/.i3/winmenu.py
+for_window [class="dia"] floating enable
 
 # modes
-
 bindsym $mod+Shift+v mode "volume"
 mode "volume" {
     bindsym Left  exec --no-startup-id pactl set-sink-volume $sink '-2%'
@@ -203,23 +208,21 @@ mode "$mode_launcher" {
 }
 
 # power management (taken from https://wiki.archlinux.org/index.php/i3#i3status)
-set $mode_system System (l)ock, (e) logout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
-bindsym $mod+Delete mode "$mode_system"
+set $mode_system System (l)ogout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s) shutdown
+bindsym $mod+BackSpace mode "$mode_system"
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym l exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-set $mode_term Terminal (g)nome-terminal, (x)term, (u)rxvt
+set $mode_term Terminal (x)term, (u)rxvt
 bindsym $mod+g mode "$mode_term"
 mode "$mode_term" {
-    bindsym g exec --no-startup-id gnome-terminal, mode "default"
     bindsym x exec --no-startup-id xterm, mode "default"
     bindsym u exec --no-startup-id urxvt, mode "default"
     bindsym Return mode "default"
@@ -227,14 +230,14 @@ mode "$mode_term" {
 }
 
 set $mode_display Ext Screen (d) LAP ON, (f) LAP OFF, (j) HOME ON, (k) HOME OFF, (g) LAB ON, (h) LAB OFF
-bindsym $mod+BackSpace mode "$mode_display"
+bindsym $mod+Delete mode "$mode_display"
 mode "$mode_display" {
-    bindsym d exec --no-startup-id xrandr --output eDP1  --auto --left-of  HDM1, mode "default"
-    bindsym f exec --no-startup-id xrandr --output eDP1  --off, mode "default"
-    bindsym j exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
-    bindsym k exec --no-startup-id xrandr --output HDMI1 --off, mode "default"
-    bindsym g exec --no-startup-id xrandr --output VGA   --auto --left-of  eDP1, mode "default"
-    bindsym h exec --no-startup-id xrandr --output VGA   --off, mode "default"
+    bindsym d exec --no-startup-id xrandr --output eDP1  --auto --left-of  HDMI1
+    bindsym f exec --no-startup-id xrandr --output eDP1  --off
+    bindsym j exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1
+    bindsym k exec --no-startup-id xrandr --output HDMI1 --off
+    bindsym g exec --no-startup-id xrandr --output DP1   --auto --left-of  eDP1
+    bindsym h exec --no-startup-id xrandr --output DP1   --off
 
     bindsym Return mode "default"
     bindsym Escape mode "default"

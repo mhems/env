@@ -16,8 +16,6 @@ export PATH=~/bin:$PATH
 . ~/.bash_aliases
 . /usr/share/doc/pkgfile/command-not-found.bash
 
-set -o noclobber
-
 # make these appear last so local configuration takes priority
 [ -e ~/.localrc ] && . ~/.localrc
 [ -d ~/local ] && export PATH=~/local:$PATH

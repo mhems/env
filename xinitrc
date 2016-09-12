@@ -3,3 +3,4 @@ xrdb -merge ~/.Xresources.solarized
 
 exec ~/.i3/subscribe.py &
 exec conky &> /dev/null &
+exec xss-lock lock &

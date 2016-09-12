@@ -1,0 +1,3 @@
+#!/bin/sh
+
+i3lock -i ~/.i3/bkg_imgs/41.png && sleep 1

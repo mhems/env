@@ -13,6 +13,8 @@
 (require 'wc-mode) ; word count in modeline
 (require 'hide-comnt) ; for hiding comments
 
+(set-default-font "Inconsolata-12")
+
 (setq-default tab-width 4
               indent-tabs-mode nil)
 
@@ -26,6 +28,7 @@
 (line-number-mode 1) ; show line number in modeline
 (column-number-mode 1) ; show column number in modeline
 (global-whitespace-mode 1) ; show whitespace
+(rainbow-delimiters-mode 1) ; pair matching delimiters with color related to level of nesting
 
 (setq whitespace-style '(face lines-tail space-before-tab))
 (setq whitespace-line-column 80)
@@ -38,7 +41,8 @@
 (diminish 'abbrev-mode)
 
 (set-mouse-color "black")
-(setq x-stretch-cursor 1) ; stretch cursor to char width (visual tabs)
+(setq x-stretch-cursor nil)
+;;(setq x-stretch-cursor 1) ; stretch cursor to char width (visual tabs)
 (setq require-final-newline 1)
 ; no startup stuff
 (setq inhibit-splash-screen 1

@@ -11,24 +11,26 @@ dot=(
      emacs.d
      xinitrc Xresources Xresources.solarized
      bashrc bash_aliases editrc
+     zshrc zsh_aliases
      git_template gitconfig gitignore
      pylintrc pystartup
      i3 i3status.conf
      ssh/config
-     config/ranger config/conky config/mpv
+     config/ranger config/conky config/mpv config/mpd config/dunst
+     ncmpcpp
      )
 
 function symlink()
 {
-    src="$PWD/$1"
-    dest=~/"$2$1"
-    if [ ! -e $dest ]; then
-        ln -s $src $dest
-        echo "Symlinked $src to $dest"
-    elif [ -L "$dest" ]; then
-        echo "$dest already exists as symlink"
+    target="$PWD/$1"
+    name=~/"$2$1"
+    if [ ! -e "$name" ]; then
+        ln -s "$target" "$name"
+        echo "Symlinked $name to $target"
+    elif [ -L "$name" ]; then
+        echo "$name already exists as symlink"
     else
-        echo "$dest already exists, no symlink was created"
+        echo "$name already exists, no symlink was created"
     fi
 }
 
