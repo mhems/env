@@ -10,8 +10,8 @@ plain=(bin texmf)
 dot=(
      emacs.d
      xinitrc Xresources Xresources.solarized
-     bashrc bash_aliases editrc
-     zshrc zsh_aliases
+     bashrc sh_aliases editrc
+     zshrc
      git_template gitconfig gitignore
      pylintrc pystartup
      i3 i3status.conf

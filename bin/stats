@@ -141,7 +141,7 @@ if __name__ == '__main__':
         source = list(filter(lambda x: len(x) > 0, map(str.strip, sys.stdin)))
 
     for datum in source:
-        parse_data(datum, list_, args.c, args.F)
+        parse_data(datum, list_, args.c - 1, args.F)
 
     first = args.A
     last = args.B
