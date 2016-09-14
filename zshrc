@@ -1,8 +1,21 @@
+# don't run if not interactive
+[ -z "$PROMPT" ] && exit
+
+export PYTHONSTARTUP=~/.pystartup
+export SHELL=zsh
+export EDITOR=emacs
+export PAGER=less
+
+[ "$TERM" = xterm ] && export TERM=xterm-256color
+[ "$EMACS" = t ] && unsetopt zle
+eval $(dircolors)
+export GREP_COLORS='1;34'
+
 HISTFILE=~/.zsh_history
 HISTSIZE=65536
 SAVEHIST=65536
 
-zstyle :compinstall filename '/home/matt/.zshrc'
+zstyle :compinstall filename '~/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -10,8 +23,34 @@ compinit
 autoload -Uz promptinit
 promptinit
 
+typeset -U path
+path=(~/bin $path[@])
+if [ -d ~/local ]
+then
+    path=(~/local $path[@])
+fi
+export PATH
+
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ~/.sh_aliases
+
+# make these source last so local configuration takes priority
+[ -e ~/.localrc ] && . ~/.localrc
+
+function p
+{
+    builtin dirs -v "$@"
+}
+
+function pu
+{
+    builtin pushd "$@"
+}
+
+function po
+{
+    builtin popd "$@"
+}
 
 # setopt append_history off
 setopt auto_cd
