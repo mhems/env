@@ -14,7 +14,7 @@ export GREP_COLORS='1;34'
 export PATH=~/bin:$PATH
 
 . ~/.sh_aliases
-. /usr/share/doc/pkgfile/command-not-found.bash
+[ -f /usr/share/doc/pkgfile/command-not-found.bash ] && . /usr/share/doc/pkgfile/command-not-found.bash
 
 # make these appear last so local configuration takes priority
 [ -e ~/.localrc ] && . ~/.localrc

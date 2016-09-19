@@ -23,6 +23,7 @@
 (electric-pair-mode 1) ; auto-insert closing paren pairs
 (tool-bar-mode -1) ; no toolbar
 (menu-bar-mode -1) ; no menu
+(scroll-bar-mode -1) ; no scrollbar
 (global-font-lock-mode 1) ; always syntax highlight
 (show-paren-mode 1) ; highlight matching pair's contents
 (line-number-mode 1) ; show line number in modeline

@@ -32,6 +32,7 @@ fi
 export PATH
 
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && . /usr/share/doc/pkgfile/command-not-found.zsh
 . ~/.sh_aliases
 
 # make these source last so local configuration takes priority
