@@ -33,7 +33,7 @@ def nums_from_file(file_, index, separator):
                 res = num(field)
                 if res is None:
                     raise RuntimeError("'%s' is not a number (file '%s')" %
-                                       (tok, file_))
+                                       (field, file_))
                 nums.append(res)
     return nums
 

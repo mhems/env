@@ -81,6 +81,14 @@ setopt multios
 
 bindkey -e  # emacs line-editing
 
+function backward-kill-partial-word {
+	local WORDCHARS="${WORDCHARS//[\/._-]/}"
+	zle backward-kill-word "$@"
+}
+zle -N backward-kill-partial-word
+bindkey '^H'   backward-kill-word
+bindkey '^[^?' backward-kill-partial-word
+
 PROMPT="[%!] %F{green}%n@%M%f %F{blue}%~%f [%@]
 %F{%0(?|green|red)}%#%f "
 RPROMPT="%0(?||%F{red} %? %f)"
