@@ -5,6 +5,7 @@ export PYTHONSTARTUP=~/.pystartup
 export SHELL=zsh
 export EDITOR=emacs
 export PAGER=less
+export XDG_CONFIG_HOME=~/.config
 
 [ "$TERM" = xterm ] && export TERM=xterm-256color
 [ "$EMACS" = t ] && unsetopt zle
