@@ -12,6 +12,8 @@ export XDG_CONFIG_HOME=~/.config
 eval $(dircolors)
 export GREP_COLORS='1;34'
 
+export WORDCHARS="${WORDCHARS//[\/._-]/}"
+
 HISTFILE=~/.zsh_history
 HISTSIZE=65536
 SAVEHIST=65536
@@ -81,14 +83,6 @@ setopt check_jobs
 setopt multios
 
 bindkey -e  # emacs line-editing
-
-function backward-kill-partial-word {
-	local WORDCHARS="${WORDCHARS//[\/._-]/}"
-	zle backward-kill-word "$@"
-}
-zle -N backward-kill-partial-word
-bindkey '^H'   backward-kill-word
-bindkey '^[^?' backward-kill-partial-word
 
 PROMPT="[%!] %F{green}%n@%M%f %F{blue}%~%f [%@]
 %F{%0(?|green|red)}%#%f "
