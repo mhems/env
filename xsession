@@ -1,6 +1,7 @@
 xrdb -merge ~/.Xresources
 xrdb -merge ~/.Xresources.solarized
 
-exec ~/.i3/subscribe.py &
+xset dpms 1800 1800 1800
+
 exec conky &> /dev/null &
-exec xss-lock lock &
+exec xss-lock lock &> /dev/null &

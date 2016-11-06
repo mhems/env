@@ -9,7 +9,7 @@ base=$PWD
 plain=(bin texmf)
 dot=(
      emacs.d
-     xinitrc Xresources Xresources.solarized
+     xsession Xresources Xresources.solarized
      bashrc sh_aliases editrc
      zshrc
      git_template gitconfig gitignore
