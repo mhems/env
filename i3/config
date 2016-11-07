@@ -100,6 +100,12 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+# bring up menu to switch to window
+bindsym $mod+q exec --no-startup-id quickswitch.py
+
+# go to lowest numbered empty workspace
+bindsym $mod+Shift+e exec --no-startup-id quickswitch.py -e
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -127,10 +133,11 @@ bar {
 
 bindsym $mod+p focus parent
 bindsym $mod+c focus child
-bindsym $mod+a workspace prev
-
-# bindsym $mod+f workspace next
+bindsym $mod+a workspace next
 bindsym $mod+b workspace back_and_forth
+
+# defragment workspaces
+bindsym $mod+g exec --no-startup-id quickswitch.py -g
 
 # Move the current workspace to the next output
 # (effectively toggles when you only have two outputs)
@@ -215,15 +222,6 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-set $mode_term Terminal (x)term, (u)rxvt
-bindsym $mod+g mode "$mode_term"
-mode "$mode_term" {
-    bindsym x exec --no-startup-id xterm, mode "default"
-    bindsym u exec --no-startup-id urxvt, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
