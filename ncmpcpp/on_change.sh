@@ -8,7 +8,8 @@ add_nonempty_attr()
     attr_val="`mpc current -f %$1%`"
     if [ -n "$attr_val" ]
     then
-        add="${1^}: $attr_val"
+        padded="`printf %-8s ${1^}:`"
+        add="${padded}${attr_val}"
         if [ -z "$msg" ]
         then
             msg="$add"
