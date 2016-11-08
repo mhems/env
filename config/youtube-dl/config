@@ -1,0 +1,5 @@
+-x
+-o ~/music/youtube/%(title)s.%(ext)s
+--audio-format mp3
+--restrict-filenames
+--no-mtime

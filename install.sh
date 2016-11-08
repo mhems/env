@@ -14,9 +14,9 @@ dot=(
      zshrc
      git_template gitconfig gitignore
      pylintrc pystartup
-     i3 i3status.conf
+     i3 i3status.conf config/i3blocks
      ssh/config
-     config/ranger config/conky config/mpv config/mpd config/dunst
+     config/ranger config/conky config/mpv config/mpd config/dunst config/youtube-dl
      ncmpcpp
      )
 
