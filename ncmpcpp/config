@@ -450,7 +450,7 @@ execute_on_song_change = ~/.ncmpcpp/on_change.sh
 #
 #media_library_sort_by_mtime = no
 #
-#enable_window_title = yes
+enable_window_title = no
 #
 ##
 ## Note: You can choose default search mode for search
