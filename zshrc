@@ -82,6 +82,8 @@ setopt check_jobs
 # setopt pipe_fail ?
 setopt multios
 
+stty -ixon
+
 bindkey -e  # emacs line-editing
 
 PROMPT="[%!] %F{green}%n@%M%f %F{blue}%~%f [%@]
