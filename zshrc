@@ -58,15 +58,19 @@ function po
 
 # setopt append_history off
 setopt auto_cd
+cdpath=(~ ~/dev ~/cur)
 # setopt auto_pushd ?
 setopt cdable_vars
 setopt chase_dots
-setopt chase_links
+setopt pushd_ignore_dups
 setopt pushd_silent
 setopt pushd_to_home
+setopt always_to_end
+setopt auto_remove_slash
 # setopt bash_auto_list ?
 # setopt brace expansion
 setopt glob_star_short
+setopt mark_dirs
 setopt nomatch
 setopt rc_expand_param
 setopt extended_history
@@ -79,12 +83,21 @@ setopt correct
 setopt rc_quotes
 # setopt rm_star_wait ?
 setopt check_jobs
-# setopt pipe_fail ?
 setopt multios
 
 stty -ixon
 
 bindkey -e  # emacs line-editing
+
+# Ctrl-N opens new urxvt in CWD
+# thanks to VOid at https://faq.i3wm.org/question/150/how-to-launch-a-terminal-from-here/
+nwZle() {
+    zle push-line;
+    BUFFER="setsid urxvt";
+    zle accept-line;
+}
+zle -N nwZle
+bindkey '^n' nwZle
 
 PROMPT="[%!] %F{green}%n@%M%f %F{blue}%~%f [%@]
 %F{%0(?|green|red)}%#%f "

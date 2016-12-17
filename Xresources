@@ -10,3 +10,7 @@ URxvt.fading: 30
 URxvt.perl-ext-common: default,matcher,-searchable-scrollback
 URxvt.url-launcher: firefox
 URxvt.matcher.button: 1
+
+URxvt.colorIT:      #87af5f
+URxvt.colorBD:      #d7d7d7
+URxvt.colorUL:      #87afd7
