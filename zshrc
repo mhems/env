@@ -35,7 +35,7 @@ fi
 export PATH
 
 . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && . /usr/share/doc/pkgfile/command-not-found.zsh
+# [ -f /usr/share/doc/pkgfile/command-not-found.zsh ] && . /usr/share/doc/pkgfile/command-not-found.zsh
 . ~/.sh_aliases
 
 # make these source last so local configuration takes priority
@@ -102,3 +102,9 @@ bindkey '^n' nwZle
 PROMPT="[%!] %F{green}%n@%M%f %F{blue}%~%f [%@]
 %F{%0(?|green|red)}%#%f "
 RPROMPT="%0(?||%F{red} %? %f)"
+
+
+# oh my zsh stuffs
+# export ZSH=/home/matt/.oh-my-zsh
+# plugins=(command-not-found)
+# source $ZSH/oh-my-zsh.sh
