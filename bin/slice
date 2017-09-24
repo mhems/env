@@ -1,0 +1,71 @@
+#!/usr/bin/env python2
+
+import sys
+
+from getopt import getopt
+
+usage = 'USAGE: nth.py [-h] [-i SEP] [-o SEP] SLICE_FORMAT [FILE+]'
+
+def make_slice_tuple(string):
+    def intern(elem):
+        return int(elem) if elem else None
+    toks = string.split(',')
+    slices = []
+    for tok in toks:
+        if ':' in tok:
+            elems = map(intern, tok.split(':'))
+            slices.append(slice(*elems))
+        else:
+            slices.append(int(tok))
+    return tuple(slices)
+
+def print_slice(slice_tuple, file_, isep=None, osep=None):
+    err_fmt = 'file {}, line {} does not have slice [{}]'
+    if osep is None:
+        osep = isep if isep is not None else ' '
+    for i, line in enumerate(file_):
+        fields = line.strip().split(isep)
+        output = []
+        for slice_ in slice_tuple:
+            try:
+                selected = fields[slice_]
+                if isinstance(slice_, slice):
+                    output.extend(selected)
+                else:
+                    output.append(selected)
+            except:
+                print >>sys.stderr, err_fmt.format(file_.name, i + 1, slice_)
+        print osep.join(output)
+
+def main(cl):
+    opts, args = getopt(cl, 'hi:o:')
+    isep=None
+    osep=None
+    for opt, val in opts:
+        if opt == '-i':
+            isep = val
+        elif opt == '-o':
+            osep = val
+        elif opt == '-h':
+            print usage
+            sys.exit(0)
+    if len(args) == 0:
+        print usage
+        sys.exit(127)
+    try:
+        slice_ = make_slice_tuple(args[0])
+    except:
+        print >>sys.stderr, "Slice string '{}' is invalid".format(args[0])
+        sys.exit(127)
+    if len(args) == 1:
+        print_slice(slice_, sys.stdin, isep, osep)
+    else:
+        for f in args[1:]:
+            try:
+                with open(f, 'r') as file_:
+                    print_slice(slice_, file_, isep, osep)
+            except IOError as e:
+                print >>sys.stderr, str(e)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
